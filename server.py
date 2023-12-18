@@ -127,7 +127,7 @@ def api_Logout(update, context):
         update.message.reply_text("Something Went Wrong")
 # Set up the bot and its message handler
 def main():
-    bot = telegram.Bot("6898739093:AAFV0Mwpi3_EGFQHRsRwDO9PWxgNXrUz8UE")
+    bot = telegram.Bot("6710510477:AAE3YFDMHWT3d6prygYFzlc285OmpQPpZB0")
     updater = telegram.ext.Updater(bot.token, use_context=True)
     disp = updater.dispatcher
     disp.add_handler(telegram.ext.CommandHandler('start',start))
