@@ -139,5 +139,5 @@ def main():
     disp.add_handler(telegram.ext.MessageHandler(telegram.ext.Filters.all, handle_message))
     updater.start_polling()
 
-if name == "main":
+if __name__ == "__main__":
     main()
