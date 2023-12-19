@@ -1,24 +1,26 @@
 import requests
+from bs4 import BeautifulSoup
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
-# Replace 'YOUR_API_ENDPOINT' with the actual API endpoint for checking balance
-API_ENDPOINT = 'YOUR_API_ENDPOINT'
+# Replace 'YOUR_WEBSITE_URL' with the actual URL you want to scrape
+WEBSITE_URL = 'https://ez4short.xyz'
 
 # Replace 'YOUR_TELEGRAM_BOT_TOKEN' with your actual Telegram bot token
-TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'
+TOKEN = '6710510477:AAE3YFDMHWT3d6prygYFzlc285OmpQPpZB0'
 
 def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('Hello! Use /balance to check the balance.')
 
 def balance(update: Update, context: CallbackContext) -> None:
     try:
-        # Make a request to the API to get the balance
-        response = requests.get(API_ENDPOINT)
-        data = response.json()
+        # Make a request to the website and parse the HTML
+        response = requests.get(WEBSITE_URL)
+        soup = BeautifulSoup(response.text, 'html.parser')
 
-        # Extract the balance from the API response (adjust as per the API structure)
-        balance = data.get('balance', 'Balance not found.')
+        # Extract the balance information (replace 'your_balance_selector' with the actual HTML selector)
+        balance_element = soup.select_one('your_balance_selector')
+        balance = balance_element.text if balance_element else 'Balance not found.'
 
         update.message.reply_text(f'Balance: {balance}')
 
@@ -38,4 +40,3 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
-  
