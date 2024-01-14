@@ -4,6 +4,8 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
+WORKER python3 bot.py
+
 RUN pip install python-telegram-bot requests
 
 COPY . .
